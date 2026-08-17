@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export function WorldGenCarousel({ images }) {
+export function WorldGenCarousel({ images, autoplayIntervalMs = 5000 }) {
   const [virtualIndex, setVirtualIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   if (!images || images.length === 0) return null;
+
+  useEffect(() => {
+    const handleVisibilityChange = () => setIsVisible(!document.hidden);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, []);
 
   const slide = (direction) => {
     setVirtualIndex((prev) => direction === 'next' ? prev + 1 : prev - 1);
   };
+
+  useEffect(() => {
+    if (isHovered || !isVisible || !autoplayIntervalMs) return;
+    const interval = setInterval(() => {
+      slide('next');
+    }, autoplayIntervalMs);
+    return () => clearInterval(interval);
+  }, [isHovered, isVisible, virtualIndex, autoplayIntervalMs]);
 
   // Ensure off-screen elements persist (far-left/far-right) so they smoothly
   // slide in without key-based remounts popping them in.
@@ -22,7 +38,11 @@ export function WorldGenCarousel({ images }) {
 
   return (
     // Issue 2 Fix: Removed `overflow-hidden` so peek images aren't square-cut by the max-w container box.
-    <div className="relative w-full max-w-6xl mx-auto h-64 md:h-[450px] flex items-center justify-center py-12">
+    <div 
+      className="relative w-full max-w-6xl mx-auto h-64 md:h-[450px] flex items-center justify-center py-12"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <AnimatePresence initial={false}>
         {slots.map(({ pos, offset }) => {
           const itemIndex = virtualIndex + offset;

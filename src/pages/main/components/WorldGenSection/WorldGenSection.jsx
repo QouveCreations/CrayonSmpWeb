@@ -24,7 +24,10 @@ export function WorldGenSection() {
       </div>
 
       {/* Carousel */}
-      <WorldGenCarousel images={worldGenConfig.images} />
+      <WorldGenCarousel 
+        images={worldGenConfig.images} 
+        autoplayIntervalMs={worldGenConfig.autoplayIntervalMs} 
+      />
     </section>
   );
 }
