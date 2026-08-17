@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Minecraft Ten';
+  src: url('./assets/fonts/MinecraftTen.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: #000000;
+  }
+}
+
+@layer components {
+  .text-link {
+    @apply text-[#B0BAC5] hover:underline cursor-pointer font-medium;
+  }
+  
+  .icon-github {
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    -webkit-mask: url('/icons/github.png') no-repeat center / contain;
+    mask: url('/icons/github.png') no-repeat center / contain;
+  }
+}
