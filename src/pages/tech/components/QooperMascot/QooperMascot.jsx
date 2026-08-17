@@ -3,6 +3,28 @@ import { useGLTF, useAnimations, OrbitControls, PerspectiveCamera } from '@react
 import { Canvas } from '@react-three/fiber';
 import { techMascotConfig } from '../../../../config/tech.hero.config';
 
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.warn('Failed to load Mascot model:', error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback || null;
+    }
+    return this.props.children;
+  }
+}
+
 const MascotModel = () => {
   const group = useRef();
   const { scene, animations } = useGLTF('/models/qooper_tech.gltf');
@@ -43,9 +65,11 @@ export const QooperMascot = () => {
         <directionalLight position={[5, 5, 5]} intensity={2} />
         <directionalLight position={[-5, 5, -5]} intensity={0.5} />
         
-        <Suspense fallback={null}>
-          <MascotModel />
-        </Suspense>
+        <ErrorBoundary fallback={null}>
+          <Suspense fallback={null}>
+            <MascotModel />
+          </Suspense>
+        </ErrorBoundary>
         
         <OrbitControls enableZoom={false} enablePan={false} enableRotate={false} />
       </Canvas>

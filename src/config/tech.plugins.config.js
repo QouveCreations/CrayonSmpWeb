@@ -52,5 +52,5 @@ export const techPluginsConfig = [
     links: [
       { label: "Visit GitHub", url: "https://github.com/CrayonSMP", prefixIcon: "Github", suffixIcon: "ExternalLink" }
     ]
-  }
+  },
 ];
