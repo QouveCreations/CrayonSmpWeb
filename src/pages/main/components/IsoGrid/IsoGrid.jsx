@@ -11,23 +11,20 @@ import * as THREE from 'three';
 
 function useResponsiveScale(customConfig) {
   const config = customConfig || responsiveConfig;
-  const getScale = (width) => {
-    for (const bp of config.breakpoints) {
-      if (width <= bp.maxWidth) {
-        return bp.scale;
-      }
-    }
-    return 1.0;
+  const getScale = (width, height) => {
+    // We import getResponsiveScale from config, so we can just use that logic
+    // but the hook was re-implementing it. Let's fix that.
+    return getResponsiveScale(width, height);
   };
 
-  const [scale, setScale] = useState(() => typeof window !== 'undefined' ? getScale(window.innerWidth) : 1);
+  const [scale, setScale] = useState(() => typeof window !== 'undefined' ? getScale(window.innerWidth, window.innerHeight) : 1);
 
   useEffect(() => {
     let timeoutId;
     const handleResize = () => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
-        setScale(getScale(window.innerWidth));
+        setScale(getScale(window.innerWidth, window.innerHeight));
       }, 150); // 150ms debounce
     };
     window.addEventListener('resize', handleResize);
@@ -324,7 +321,7 @@ export const IsoGrid = ({ interactive = true, scaleConfig, showLogo = true }) =>
           zoom={12} 
         />
         <Scene interactive={interactive} scaleConfig={scaleConfig} showLogo={showLogo} />
-        <OrbitControls enableRotate={false} enablePan={false} enableZoom={false} />
+        <OrbitControls target={[0, 7.5, 0]} enableRotate={false} enablePan={false} enableZoom={false} />
       </Canvas>
     </div>
   );

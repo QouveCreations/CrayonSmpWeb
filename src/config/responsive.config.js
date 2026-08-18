@@ -7,12 +7,25 @@ export const responsiveConfig = {
   ]
 };
 
-// Evaluates the current window width against the defined breakpoints
-export const getResponsiveScale = (windowWidth) => {
+// Evaluates the current window dimensions against the defined breakpoints
+export const getResponsiveScale = (windowWidth, windowHeight) => {
+  // If height is particularly short (e.g., small laptops or landscape mobile)
+  // we want to force a smaller scale so the 3D models don't overlap UI.
+  let baseScale = 1.0;
+  
   for (const bp of responsiveConfig.breakpoints) {
     if (windowWidth <= bp.maxWidth) {
-      return bp.scale;
+      baseScale = bp.scale;
+      break;
     }
   }
-  return 1.0;
+
+  // Aggressively scale down if the screen is very short, regardless of width
+  if (windowHeight && windowHeight < 700) {
+    baseScale = Math.min(baseScale, 0.65);
+  } else if (windowHeight && windowHeight < 850) {
+    baseScale = Math.min(baseScale, 0.8);
+  }
+
+  return baseScale;
 };

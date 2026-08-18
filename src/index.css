@@ -28,4 +28,12 @@
     -webkit-mask: url('/icons/github.png') no-repeat center / contain;
     mask: url('/icons/github.png') no-repeat center / contain;
   }
+  
+  .icon-discord {
+    width: 1em;
+    height: 1em;
+    background-color: currentColor;
+    -webkit-mask: url('/icons/discord.png') no-repeat center / contain;
+    mask: url('/icons/discord.png') no-repeat center / contain;
+  }
 }

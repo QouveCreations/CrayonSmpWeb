@@ -9,17 +9,13 @@ export const heroConfig = {
       text: "Welcome to",
       color: themeConfig.colors.text, // #FFFFFF
       size: 'clamp(2rem, 5vw, 4rem)',
-      letterSpacing: '0.05em',
-      offsetX: 0, // Shift left/right in pixels
-      offsetY: -380  // Shift up/down in pixels (negative = up)
+      letterSpacing: '0.05em'
     },
     line2: {
       text: "CrayonSMP",
       color: themeConfig.colors.primary, // #FF0040
       size: 'clamp(4rem, 10vw, 8rem)',
-      letterSpacing: '0.02em',
-      offsetX: 0,
-      offsetY: -360
+      letterSpacing: '0.02em'
     }
   }
 };

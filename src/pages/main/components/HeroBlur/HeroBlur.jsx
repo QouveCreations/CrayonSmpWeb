@@ -22,7 +22,7 @@ export const HeroBlur = ({ children }) => {
 
       {/* Two-Line Headline overlay with difference blend mode for automatic inversion */}
       <div 
-        className="absolute inset-0 z-20 pointer-events-none flex flex-col items-center justify-center"
+        className="absolute top-0 left-0 w-full z-20 pointer-events-none flex flex-col items-center justify-start pt-[15vh] md:pt-[20vh]"
         style={{ mixBlendMode: heroConfig.headline.blendMode }}
       >
         <div 
@@ -35,7 +35,6 @@ export const HeroBlur = ({ children }) => {
               color: heroConfig.headline.line1.color,
               fontSize: heroConfig.headline.line1.size,
               letterSpacing: heroConfig.headline.line1.letterSpacing,
-              transform: `translate(${heroConfig.headline.line1.offsetX || 0}px, ${heroConfig.headline.line1.offsetY || 0}px)`,
               marginBottom: '-0.1em' // Tightly spaced above the main title
             }}
           >
@@ -46,8 +45,7 @@ export const HeroBlur = ({ children }) => {
             style={{ 
               color: heroConfig.headline.line2.color,
               fontSize: heroConfig.headline.line2.size,
-              letterSpacing: heroConfig.headline.line2.letterSpacing,
-              transform: `translate(${heroConfig.headline.line2.offsetX || 0}px, ${heroConfig.headline.line2.offsetY || 0}px)`
+              letterSpacing: heroConfig.headline.line2.letterSpacing
             }}
           >
             {heroConfig.headline.line2.text}
