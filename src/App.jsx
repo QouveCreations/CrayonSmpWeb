@@ -6,6 +6,7 @@ import { ChangelogsPage } from './pages/changelogs/ChangelogsPage';
 import { RulesPage } from './pages/rules/RulesPage';
 import { TechPage } from './pages/tech/TechPage';
 import { WikiPage } from './pages/wiki/WikiPage';
+import { ImprintPage } from './pages/imprint/ImprintPage';
 import { categoryBlacklist } from './config/nav.blacklist.config';
 import { navConfig } from './config/nav.config';
 
@@ -17,7 +18,10 @@ function TitleUpdater() {
     const navItem = navConfig.items.find(item => item.path === currentPath) 
       || navConfig.items.find(item => item.id === 'main');
     
-    const categoryName = navItem ? navItem.label : 'Main';
+    // For routes not in nav like /imprint
+    let categoryName = navItem ? navItem.label : 'Main';
+    if (currentPath === '/imprint') categoryName = 'Imprint';
+    
     document.title = `CrayonSMP — ${categoryName}`;
   }, [location.pathname]);
 
@@ -35,6 +39,7 @@ function App() {
         <Route path="/rules" element={categoryBlacklist.includes('rules') ? <Navigate to="/" replace /> : <RulesPage />} />
         <Route path="/tech" element={categoryBlacklist.includes('tech') ? <Navigate to="/" replace /> : <TechPage />} />
         <Route path="/wiki" element={categoryBlacklist.includes('wiki') ? <Navigate to="/" replace /> : <WikiPage />} />
+        <Route path="/imprint" element={<ImprintPage />} />
       </Routes>
     </div>
   );
