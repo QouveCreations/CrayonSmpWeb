@@ -10,6 +10,8 @@ import { ImprintPage } from './pages/imprint/ImprintPage';
 import { categoryBlacklist } from './config/nav.blacklist.config';
 import { navConfig } from './config/nav.config';
 import { SiteFooter } from './shared/components/SiteFooter';
+import { MobileTabBar } from './components/MobileTabBar/MobileTabBar';
+import { useIsMobile } from './shared/utils/deviceDetect';
 
 function TitleUpdater() {
   const location = useLocation();
@@ -40,15 +42,17 @@ function ScrollToTop() {
 }
 
 function App() {
+  const isMobile = useIsMobile();
+
   return (
     <div 
-      className="min-h-screen bg-black font-sans text-white grid" 
-      style={{ gridTemplateRows: '1fr auto' }}
+      className="min-h-screen bg-black font-sans text-white flex flex-col" 
     >
       <ScrollToTop />
       <TitleUpdater />
-      <NavBar />
-      <div className="w-full">
+      {isMobile ? <MobileTabBar /> : <NavBar />}
+      
+      <div className="w-full flex-grow">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/changelogs" element={categoryBlacklist.includes('changelogs') ? <Navigate to="/" replace /> : <ChangelogsPage />} />
@@ -58,7 +62,10 @@ function App() {
           <Route path="/imprint" element={<ImprintPage />} />
         </Routes>
       </div>
-      <SiteFooter />
+      
+      <div style={{ paddingBottom: isMobile ? 'calc(6.5rem + env(safe-area-inset-bottom))' : 0 }}>
+        <SiteFooter />
+      </div>
     </div>
   );
 }

@@ -2,8 +2,11 @@ import React from 'react';
 import { themeConfig } from '../../../../config/theme.config';
 import { TechGrid } from '../TechGrid/TechGrid';
 import { QooperMascot } from '../QooperMascot/QooperMascot';
+import { useIsMobile } from '../../../../shared/utils/deviceDetect';
 
 export const TechHero = () => {
+  const isMobile = useIsMobile();
+
   return (
     <div className="relative w-full h-[40vh] min-h-[300px] overflow-hidden flex flex-col items-center justify-center">
       {/* Background Gradient/Blur */}
@@ -35,7 +38,7 @@ export const TechHero = () => {
 
       {/* Qooper Mascot Slot */}
       <div className="absolute top-1/2 -translate-y-1/2 right-[2%] md:right-[10%] h-[80%] aspect-square z-30 pointer-events-none">
-        <QooperMascot />
+        {!isMobile && <QooperMascot />}
       </div>
     </div>
   );

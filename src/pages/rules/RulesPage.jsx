@@ -3,6 +3,7 @@ import { RulesHero } from './components/RulesHero/RulesHero';
 import { RuleCard } from './components/RuleCard/RuleCard';
 import { rulesContentConfig } from '../../config/rules.content.config';
 import { themeConfig } from '../../config/theme.config';
+import { SectionTitle } from '../../shared/components/SectionTitle';
 
 import * as LucideIcons from 'lucide-react';
 
@@ -19,20 +20,12 @@ export function RulesPage() {
           
           return (
             <div key={category.id} className="flex flex-col gap-8 md:gap-12 w-full">
-              <div className="flex items-center justify-center gap-3 md:gap-4">
-                {IconComponent && <IconComponent size={48} color={iconColor} className="w-10 h-10 md:w-12 md:h-12" />}
-                <h2 
-                  className="text-4xl md:text-5xl text-center m-0"
-                  style={{ 
-                    color: iconColor,
-                    fontFamily: '"Minecraft Ten", sans-serif',
-                    letterSpacing: '0.05em',
-                    lineHeight: 1
-                  }}
-                >
-                  {category.title}
-                </h2>
-              </div>
+              <SectionTitle 
+                title={category.title} 
+                icon={IconComponent} 
+                iconColor={iconColor} 
+                className="mb-0" 
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {category.rules.map((rule, index) => (
                   <RuleCard 

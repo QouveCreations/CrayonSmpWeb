@@ -4,28 +4,27 @@ import { Users } from 'lucide-react';
 import { DiscordIcon } from '../../../../components/icons/DiscordIcon';
 import { themeConfig } from '../../../../config/theme.config';
 import { QooperMascot } from './QooperMascot';
+import { useIsMobile } from '../../../../shared/utils/deviceDetect';
+import { SectionTitle } from '../../../../shared/components/SectionTitle';
 
 export function JoinCommunitySection() {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="relative w-full pt-40 pb-24 z-20 flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative w-full py-12 md:pt-40 md:pb-24 z-20 flex flex-col items-center justify-center overflow-hidden">
       
       {/* Mascot - absolutely positioned to bleed off the right edge */}
       <div className="absolute top-1/2 -translate-y-1/2 -right-[30%] md:-right-[15%] lg:-right-[5%] w-[80vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] aspect-square pointer-events-none opacity-30 md:opacity-100 z-0">
-        <QooperMascot />
+        {!isMobile && <QooperMascot />}
       </div>
 
       <div className="container mx-auto px-4 flex flex-col items-center relative z-10">
         {/* Title */}
-        <h2 
-          className="text-4xl md:text-5xl lg:text-6xl text-center text-white mb-20 uppercase tracking-wider flex items-center justify-center gap-4 md:gap-6"
-          style={{ 
-            fontFamily: "'Minecraft Ten', sans-serif",
-            textShadow: '0px 4px 0px rgba(0,0,0,0.5)'
-          }}
-        >
-          <Users className="w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 text-white" style={{ filter: 'drop-shadow(0px 4px 0px rgba(0,0,0,0.5))' }} />
-          <span>{joinCommunityConfig.title}</span>
-        </h2>
+        <SectionTitle 
+          title={joinCommunityConfig.title} 
+          icon={Users} 
+          className="mb-20 text-white" 
+        />
         
         {/* CTA Button */}
         <a 
@@ -40,7 +39,7 @@ export function JoinCommunitySection() {
         </a>
 
         {/* Description */}
-        <p className="text-lg md:text-xl text-center text-[#B0BAC5] max-w-2xl mb-12">
+        <p className="text-lg md:text-xl text-center text-[#B0BAC5] max-w-2xl mb-0 md:mb-12">
           {joinCommunityConfig.description}
         </p>
       </div>

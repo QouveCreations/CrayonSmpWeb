@@ -1,10 +1,19 @@
 import React from 'react';
 import { themeConfig } from '../../../../config/theme.config';
 import { heroConfig } from '../../../../config/hero.config';
+import { useIsMobile } from '../../../../shared/utils/deviceDetect';
 
 export const HeroBlur = ({ children }) => {
+  const isMobile = useIsMobile();
+  const heroHeight = isMobile && heroConfig.mobile?.heroHeight ? heroConfig.mobile.heroHeight : '100vh';
+  const paddingTop = isMobile && heroConfig.mobile?.headlineOffsetTop ? heroConfig.mobile.headlineOffsetTop : '15vh';
+  const transformX = isMobile && heroConfig.mobile?.headlineOffsetX ? `translateX(${heroConfig.mobile.headlineOffsetX})` : 'none';
+
   return (
-    <div className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center">
+    <div 
+      className="relative w-full overflow-hidden flex flex-col items-center justify-center"
+      style={{ height: heroHeight }}
+    >
       {/* Background Gradient/Blur */}
       <div 
         className="absolute inset-0 z-0 pointer-events-none"
@@ -20,17 +29,23 @@ export const HeroBlur = ({ children }) => {
         {children}
       </div>
 
-      {/* Two-Line Headline overlay with difference blend mode for automatic inversion */}
+      {/* Content overlay */}
       <div 
-        className="absolute top-0 left-0 w-full z-20 pointer-events-none flex flex-col items-center justify-start pt-[15vh] md:pt-[20vh]"
-        style={{ mixBlendMode: heroConfig.headline.blendMode }}
+        className={`absolute top-0 left-0 w-full h-full z-20 pointer-events-none flex flex-col items-center ${isMobile ? 'justify-center' : 'justify-start'}`}
+        style={{ 
+          paddingTop: isMobile ? 0 : paddingTop,
+          transform: transformX
+        }}
       >
         <div 
           className="flex flex-col items-center justify-center" 
-          style={{ fontFamily: heroConfig.headline.fontFamily }}
+          style={{ 
+            fontFamily: heroConfig.headline.fontFamily,
+            mixBlendMode: heroConfig.headline.blendMode
+          }}
         >
           <h2 
-            className="leading-none m-0 p-0"
+            className="leading-none m-0 p-0 text-center"
             style={{ 
               color: heroConfig.headline.line1.color,
               fontSize: heroConfig.headline.line1.size,
@@ -41,7 +56,7 @@ export const HeroBlur = ({ children }) => {
             {heroConfig.headline.line1.text}
           </h2>
           <h1 
-            className="leading-none m-0 p-0"
+            className="leading-none m-0 p-0 text-center"
             style={{ 
               color: heroConfig.headline.line2.color,
               fontSize: heroConfig.headline.line2.size,
@@ -51,6 +66,18 @@ export const HeroBlur = ({ children }) => {
             {heroConfig.headline.line2.text}
           </h1>
         </div>
+
+        {/* Mobile Brush Image */}
+        {isMobile && heroConfig.mobile?.brushImage && (
+          <div className="mt-12 px-4 flex justify-center w-full pointer-events-auto">
+            <img 
+              src={heroConfig.mobile.brushImage.path} 
+              alt="CrayonSMP Brush" 
+              className="drop-shadow-lg"
+              style={{ maxHeight: heroConfig.mobile.brushImage.maxHeight, objectFit: 'contain' }}
+            />
+          </div>
+        )}
       </div>
 
     </div>

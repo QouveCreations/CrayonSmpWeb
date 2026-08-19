@@ -5,12 +5,15 @@ import { WorldGenSection } from './components/WorldGenSection/WorldGenSection';
 import { WhatIsSection } from './components/WhatIsSection/WhatIsSection';
 import { PartnersSection } from './components/PartnersSection/PartnersSection';
 import { JoinCommunitySection } from './components/JoinCommunitySection/JoinCommunitySection';
+import { useIsMobile } from '../../shared/utils/deviceDetect';
 
 export function MainPage() {
+  const isMobile = useIsMobile();
+
   return (
     <>
       <HeroBlur>
-        <IsoGrid />
+        {!isMobile && <IsoGrid />}
       </HeroBlur>
       <WhatIsSection />
       <WorldGenSection />

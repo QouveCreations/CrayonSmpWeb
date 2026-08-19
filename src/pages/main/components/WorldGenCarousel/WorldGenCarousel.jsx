@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../../../../shared/utils/deviceDetect';
+import { worldGenConfig } from '../../../../config/worldgen.config';
 
 export function WorldGenCarousel({ images, autoplayIntervalMs = 5000 }) {
   const [virtualIndex, setVirtualIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const isMobile = useIsMobile();
 
   if (!images || images.length === 0) return null;
 
@@ -35,6 +38,19 @@ export function WorldGenCarousel({ images, autoplayIntervalMs = 5000 }) {
     { pos: 'right',     offset: 1 },
     { pos: 'far-right', offset: 2 }
   ];
+
+  const leftOffset = isMobile ? (worldGenConfig.mobile?.edgeOffset || '1rem') : (worldGenConfig.desktop?.edgeOffset || '15%');
+  const rightOffset = isMobile ? (worldGenConfig.mobile?.edgeOffset || '1rem') : (worldGenConfig.desktop?.edgeOffset || '15%');
+  
+  const btnClass = isMobile 
+    ? "absolute z-20 cursor-pointer flex items-center justify-center w-12 h-12 shadow-lg hover:scale-105 active:scale-95 transition-transform border-[2px] border-white/10" 
+    : "absolute z-20 cursor-pointer text-white/50 hover:text-white transition-colors duration-300 p-2";
+    
+  const btnStyle = isMobile ? {
+    backgroundColor: worldGenConfig.mobile?.buttonStyle?.background || '#101013',
+    color: worldGenConfig.mobile?.buttonStyle?.color || '#FF0040',
+    borderRadius: worldGenConfig.mobile?.buttonStyle?.rounded === 'full' ? '9999px' : '0.5rem'
+  } : {};
 
   return (
     // Issue 2 Fix: Removed `overflow-hidden` so peek images aren't square-cut by the max-w container box.
@@ -116,19 +132,21 @@ export function WorldGenCarousel({ images, autoplayIntervalMs = 5000 }) {
 
       {/* Navigation Arrows */}
       <div 
-        className="absolute left-[10%] md:left-[15%] z-20 cursor-pointer text-white/50 hover:text-white transition-colors duration-300 p-2"
+        className={btnClass}
+        style={{ left: leftOffset, ...btnStyle }}
         onClick={() => slide('prev')}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width={isMobile ? "24" : "48"} height={isMobile ? "24" : "48"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="m15 18-6-6 6-6"/>
         </svg>
       </div>
       
       <div 
-        className="absolute right-[10%] md:right-[15%] z-20 cursor-pointer text-white/50 hover:text-white transition-colors duration-300 p-2"
+        className={btnClass}
+        style={{ right: rightOffset, ...btnStyle }}
         onClick={() => slide('next')}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg xmlns="http://www.w3.org/2000/svg" width={isMobile ? "24" : "48"} height={isMobile ? "24" : "48"} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <path d="m9 18 6-6-6-6"/>
         </svg>
       </div>

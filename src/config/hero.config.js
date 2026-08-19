@@ -17,5 +17,14 @@ export const heroConfig = {
       size: 'clamp(4rem, 10vw, 8rem)',
       letterSpacing: '0.02em'
     }
+  },
+  mobile: {
+    heroHeight: '100vh',
+    headlineOffsetTop: '15vh',
+    headlineOffsetX: '0px', // adjustment for perfect centering if needed
+    brushImage: {
+      path: '/showcase/brush.png',
+      maxHeight: '30vh'
+    }
   }
 };

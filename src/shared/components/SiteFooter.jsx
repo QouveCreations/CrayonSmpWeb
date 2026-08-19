@@ -1,15 +1,17 @@
 import React from 'react';
 import { footerConfig } from '../../config/footer.config';
 import { TextLink } from '../../components/TextLink/TextLink';
+import { useIsMobile } from '../utils/deviceDetect';
 
 export const SiteFooter = () => {
+  const isMobile = useIsMobile();
   const activeColumns = footerConfig.columns.filter(col => col.enabled);
 
   return (
     <footer className="pt-16 pb-40 px-6 mt-auto w-full">
       <div 
-        className="max-w-screen-xl mx-auto flex flex-wrap justify-center"
-        style={{ gap: footerConfig.columnGap }}
+        className="max-w-screen-xl mx-auto grid grid-cols-2 md:flex md:flex-wrap md:justify-center pl-4 md:pl-0"
+        style={{ gap: isMobile ? '2rem' : footerConfig.columnGap }}
       >
         {activeColumns.map(column => (
           <div key={column.id} className="flex flex-col gap-6 min-w-[150px]">
