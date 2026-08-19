@@ -9,6 +9,7 @@ import { WikiPage } from './pages/wiki/WikiPage';
 import { ImprintPage } from './pages/imprint/ImprintPage';
 import { categoryBlacklist } from './config/nav.blacklist.config';
 import { navConfig } from './config/nav.config';
+import { SiteFooter } from './shared/components/SiteFooter';
 
 function TitleUpdater() {
   const location = useLocation();
@@ -28,19 +29,36 @@ function TitleUpdater() {
   return null;
 }
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 function App() {
   return (
-    <div className="min-h-screen bg-black font-sans text-white">
+    <div 
+      className="min-h-screen bg-black font-sans text-white grid" 
+      style={{ gridTemplateRows: '1fr auto' }}
+    >
+      <ScrollToTop />
       <TitleUpdater />
       <NavBar />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/changelogs" element={categoryBlacklist.includes('changelogs') ? <Navigate to="/" replace /> : <ChangelogsPage />} />
-        <Route path="/rules" element={categoryBlacklist.includes('rules') ? <Navigate to="/" replace /> : <RulesPage />} />
-        <Route path="/tech" element={categoryBlacklist.includes('tech') ? <Navigate to="/" replace /> : <TechPage />} />
-        <Route path="/wiki" element={categoryBlacklist.includes('wiki') ? <Navigate to="/" replace /> : <WikiPage />} />
-        <Route path="/imprint" element={<ImprintPage />} />
-      </Routes>
+      <div className="w-full">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/changelogs" element={categoryBlacklist.includes('changelogs') ? <Navigate to="/" replace /> : <ChangelogsPage />} />
+          <Route path="/rules" element={categoryBlacklist.includes('rules') ? <Navigate to="/" replace /> : <RulesPage />} />
+          <Route path="/tech" element={categoryBlacklist.includes('tech') ? <Navigate to="/" replace /> : <TechPage />} />
+          <Route path="/wiki" element={categoryBlacklist.includes('wiki') ? <Navigate to="/" replace /> : <WikiPage />} />
+          <Route path="/imprint" element={<ImprintPage />} />
+        </Routes>
+      </div>
+      <SiteFooter />
     </div>
   );
 }

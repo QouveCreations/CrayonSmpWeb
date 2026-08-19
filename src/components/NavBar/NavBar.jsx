@@ -11,13 +11,12 @@ export const NavBar = () => {
   const navigate = useNavigate();
   
   const visibleNavItems = navConfig.items.filter(item => !categoryBlacklist.includes(item.id));
-  const currentIndex = visibleNavItems.findIndex(item => item.path === location.pathname);
-  const activeIndex = currentIndex !== -1 ? currentIndex : 0;
+  const activeIndex = visibleNavItems.findIndex(item => item.path === location.pathname);
 
   const [bounds, setBounds] = useState([]);
   const pillRefs = useRef([]);
   const controls = useAnimation();
-  const prevIndex = useRef(activeIndex);
+  const prevIndex = useRef(activeIndex !== -1 ? activeIndex : 0);
 
   useLayoutEffect(() => {
     // Measure initial bounds
@@ -29,24 +28,48 @@ export const NavBar = () => {
       setBounds(newBounds);
       
       // Set position without animation (used on mount and resize)
-      const targetIndex = prevIndex.current;
+      const targetIndex = activeIndex !== -1 ? activeIndex : prevIndex.current;
       if (newBounds[targetIndex]) {
-        controls.set({ left: newBounds[targetIndex].left, width: newBounds[targetIndex].width });
+        controls.set({ 
+          left: newBounds[targetIndex].left, 
+          width: newBounds[targetIndex].width,
+          opacity: activeIndex === -1 ? 0 : 1
+        });
       }
     };
     
     measureBounds();
     window.addEventListener('resize', measureBounds);
     return () => window.removeEventListener('resize', measureBounds);
-  }, [controls]);
+  }, [controls, activeIndex]);
 
   useEffect(() => {
     if (bounds.length === 0) return;
     
+    if (activeIndex === -1) {
+      controls.start({ opacity: 0, transition: { duration: 0.2 } });
+      return;
+    }
+
     const curr = bounds[activeIndex];
+    
+    if (prevIndex.current === -1) {
+      controls.start({
+        left: curr.left,
+        width: curr.width,
+        opacity: 1,
+        transition: { duration: 0.2 }
+      });
+      prevIndex.current = activeIndex;
+      return;
+    }
+
     const prev = bounds[prevIndex.current];
     
-    if (activeIndex === prevIndex.current) return;
+    if (activeIndex === prevIndex.current) {
+      controls.start({ opacity: 1, transition: { duration: 0.2 } });
+      return;
+    }
     
     // Stretch then snap animation
     const isMovingRight = activeIndex > prevIndex.current;
@@ -64,6 +87,7 @@ export const NavBar = () => {
     controls.start({
       left: [prev.left, midLeft, curr.left],
       width: [prev.width, midWidth, curr.width],
+      opacity: 1,
       transition: {
         duration: 0.4,
         times: [0, 0.5, 1],
@@ -87,8 +111,9 @@ export const NavBar = () => {
             className="absolute top-2 bottom-2 rounded-full z-10"
             style={{ backgroundColor: themeConfig.colors.primaryMuted }}
             initial={{ 
-              left: bounds[prevIndex.current]?.left || 0, 
-              width: bounds[prevIndex.current]?.width || 0 
+              left: bounds[prevIndex.current !== -1 ? prevIndex.current : 0]?.left || 0, 
+              width: bounds[prevIndex.current !== -1 ? prevIndex.current : 0]?.width || 0,
+              opacity: activeIndex === -1 ? 0 : 1
             }}
             animate={controls}
           />
