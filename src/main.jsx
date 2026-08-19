@@ -8,8 +8,10 @@ import App from './App.jsx'
 // during development (StrictMode unmounts) or when navigating between pages.
 const originalWarn = console.warn;
 console.warn = (...args) => {
-  const msg = args.join(' ');
-  if (msg.includes('THREE.Clock:') || msg.includes('WebGL context was lost')) {
+  if (typeof args[0] === 'string' && (
+    args[0].includes('THREE.Clock:') || 
+    args[0].includes('WebGL context was lost')
+  )) {
     return;
   }
   originalWarn(...args);
@@ -17,15 +19,16 @@ console.warn = (...args) => {
 
 const originalError = console.error;
 console.error = (...args) => {
-  const msg = args.join(' ');
-  if (msg.includes('Context Lost') || msg.includes('WebGL context was lost')) {
+  if (typeof args[0] === 'string' && args[0].includes('THREE.WebGLRenderer: Context Lost')) {
     return;
   }
   originalError(...args);
 };
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StrictMode>,
 )
