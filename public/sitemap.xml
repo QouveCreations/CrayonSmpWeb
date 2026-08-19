@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://crayonsmp.com/</loc> <priority>1.00</priority>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/favicon-32x32.png</image:loc> <image:title>Crayon SMP Logo</image:title>
+      <image:caption>This is the logo for CrayonSMP</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/showcase/brush.png</image:loc> <image:title>Crayon SMP Logo - Transparent</image:title>
+      <image:caption>This is the logo for CrayonSMP (transparent)</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/showcase/sunset.png</image:loc> <image:title>CrayonSMP sunset showcase</image:title>
+      <image:caption>A little sunset showcase.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/beach.png</image:loc> <image:title>CrayonSMP worldgen beach showcase</image:title>
+      <image:caption>Showcase of the beach in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/birch_forest.png</image:loc> <image:title>CrayonSMP worldgen birch forest showcase</image:title>
+      <image:caption>Showcase of the birch forest in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/cherry_cave_lake.png</image:loc> <image:title>CrayonSMP worldgen cherry cave lake showcase</image:title>
+      <image:caption>Showcase of the cherry cave lake in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/cherry_grove.png</image:loc> <image:title>CrayonSMP worldgen cherry grove showcase</image:title>
+      <image:caption>Showcase of the cherry grove in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/jungle.png</image:loc> <image:title>CrayonSMP worldgen jungle showcase</image:title>
+      <image:caption>Showcase of the jungle in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/plains_mountain.png</image:loc> <image:title>CrayonSMP worldgen plains mountain showcase</image:title>
+      <image:caption>Showcase of the plains mountain in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/plains.png</image:loc> <image:title>CrayonSMP worldgen plains showcase</image:title>
+      <image:caption>Showcase of the plains in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/savanna.png</image:loc> <image:title>CrayonSMP worldgen savanna showcase</image:title>
+      <image:caption>Showcase of the savanna in the default world generation.</image:caption>
+    </image:image>
+
+    <image:image>
+      <image:loc>https://crayonsmp.com/worldgen/taiga.png</image:loc> <image:title>CrayonSMP worldgen taiga showcase</image:title>
+      <image:caption>Showcase of the taiga in the default world generation.</image:caption>
+    </image:image>
+
+
+  </url>
+
+  <url>
+    <loc>https://crayonsmp.com/rules</loc> <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://crayonsmp.com/tech</loc> <priority>0.80</priority>
+  </url>
+  
+  <url>
+    <loc>https://crayonsmp.com/imprint</loc> <priority>0.80</priority>
+  </url>
+
+</urlset>

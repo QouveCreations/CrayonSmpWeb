@@ -1,0 +1,4 @@
+User-agent: *
+
+Sitemap: https://crayonsmp.com/sitemap.xml
+
