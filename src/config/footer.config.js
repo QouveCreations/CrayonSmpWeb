@@ -17,6 +17,7 @@ export const footerConfig = {
         { text: "Status", url: "https://status.crayonsmp.net", externalIcon: true },
       ]
     },
+    
     {
       id: "community",
       enabled: true,
