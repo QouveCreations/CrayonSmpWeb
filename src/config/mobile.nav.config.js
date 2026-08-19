@@ -17,7 +17,7 @@ export const mobileNavConfig = {
   ],
 
   // Extra morphing menu feature
-  enableMenuButton: true,
+  enableMenuButton: false,
   menuIcon: Menu,
   extraMenuItems: [
     { id: 'imprint', label: 'Imprint', path: '/imprint', icon: GavelIcon },
