@@ -48,7 +48,7 @@ export const techPluginsConfig = [
   {
     name: "GitHub",
     icon: "Github",
-    description: "Hosts CrayonSMP's open-source plugins, configs, and documentation — where contributors submit and track development work.",
+    description: "Hosts CrayonSMP's open-source plugins, configs, and documentation. The place where contributors submit and track development work.",
     links: [
       { label: "Visit GitHub", url: "https://github.com/CrayonSMP", prefixIcon: "Github", suffixIcon: "ExternalLink" }
     ]
