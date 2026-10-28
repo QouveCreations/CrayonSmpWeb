@@ -15,7 +15,6 @@ Mammelzen`
       title: "Contact Information",
       content: `Phone: +49 1512 3380931
 Private Email: TamashiiMon@gmail.com
-Organization Email: team@crayonsmp.com
 Note: Contacting us by email or phone is usually the fastest method.`
     },
     {
