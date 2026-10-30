@@ -2,23 +2,6 @@ export const footerConfig = {
   columnGap: "100px",
   columns: [
     {
-      id: "demo_features",
-      enabled: false,
-      title: "demo_features",
-      items: [
-        { text: "Rules", url: "/rules" },
-        {
-          text: "Color",
-          url: "https://www.colorhexa.com/ff0040",
-          externalIcon: true,
-          color: "#ff0040",
-          hoverColor: "#ff0040"
-        },
-        { text: "Status", url: "https://status.crayonsmp.net", externalIcon: true },
-      ]
-    },
-    
-    {
       id: "community",
       enabled: true,
       title: "Community",
@@ -27,6 +10,15 @@ export const footerConfig = {
         { text: "GitHub", url: "https://github.com/CrayonSMP", externalIcon: true },
         { text: "Instagram", url: "https://instagram.com/crayonsmp_qooper", externalIcon: true },
         { text: "Youtube", url: "https://www.youtube.com/@CrayonSMP-OTH", externalIcon: true }
+      ]
+    },
+    {
+      id: "informations",
+      enabled: true,
+      title: "Informations",
+      items: [
+        { text: "Status", url: "https://stats.uptimerobot.com/kzouirisYX", externalIcon: true },
+        { text: "Web-map", url: "https://map.crayonsmp.com", externalIcon: true },
       ]
     },
     {
