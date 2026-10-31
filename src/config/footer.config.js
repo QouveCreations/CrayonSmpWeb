@@ -17,7 +17,7 @@ export const footerConfig = {
       enabled: true,
       title: "Informations",
       items: [
-        { text: "Status", url: "https://stats.uptimerobot.com/kzouirisYX", externalIcon: true },
+        { text: "Status", url: "https://status.qouve.space/", externalIcon: true },
         { text: "Web-map", url: "https://map.crayonsmp.com", externalIcon: true },
       ]
     },
