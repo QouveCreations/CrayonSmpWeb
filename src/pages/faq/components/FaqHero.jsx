@@ -3,9 +3,9 @@ import { themeConfig } from '../../../config/theme.config';
 import { faqConfig } from '../../../config/faq.config';
 import { RulesGrid } from '../../rules/components/RulesGrid/RulesGrid';
 
-export const FaqHero = () => {
+export const FaqHero = ({ children }) => {
   return (
-    <div className="relative w-full h-[40vh] min-h-[300px] overflow-hidden flex flex-col items-center justify-center">
+    <div className="relative w-full h-[40vh] min-h-[340px] overflow-hidden flex flex-col items-center justify-center">
       {/* Background Gradient/Blur */}
       <div
         className="absolute inset-0 z-0 pointer-events-none"
@@ -20,7 +20,7 @@ export const FaqHero = () => {
       <RulesGrid />
 
       {/* Headline */}
-      <div className="relative z-20 flex flex-col items-center justify-center pointer-events-none px-6">
+      <div className="relative z-20 flex flex-col items-center justify-center px-6 w-full pointer-events-none">
         <h1
           className="text-white m-0 p-0 leading-none drop-shadow-md text-center"
           style={{
@@ -31,6 +31,13 @@ export const FaqHero = () => {
         >
           FAQ
         </h1>
+
+        {/* Optional slot below the headline (used for the search) */}
+        {children && (
+          <div className="pointer-events-auto mt-6 w-full max-w-md">
+            {children}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 export const faqConfig = {
   title: "FAQ",
   icon: "CircleHelp",
+  description: "Quick answers to the things new players ask us the most.",
   discordUrl: "https://discord.gg/XxbGMFe8Hg",
   footerText: "Still got a question?",
   footerButtonLabel: "Ask us on Discord",
@@ -109,7 +110,19 @@ export const faqConfig = {
           icon: "Download",
           question: "Do I need to install mods?",
           answer:
-            "No. CrayonSMP runs on plugins only, so there is nothing to download and nothing to keep updating on your side. Just join with a normal Minecraft client."
+            "No, mods are not required. CrayonSMP runs on plugins, so you can join with a normal Minecraft client and don't need to keep anything updated. There are two optional mods you can add if you want: Simple Voice Chat and CraftEngine."
+        },
+        {
+          icon: "Mic",
+          question: "Does CrayonSMP support the Simple Voice Chat mod?",
+          answer:
+            "Yes, Simple Voice Chat is supported. It's completely optional: if you want to talk to other players in-game, just install the mod on your client."
+        },
+        {
+          icon: "Package",
+          question: "Can I use the CraftEngine mod?",
+          answer:
+            "Yes, the CraftEngine mod is supported too. It's optional, but it fixes a few visual bugs with custom content."
         },
         {
           icon: "Coins",
