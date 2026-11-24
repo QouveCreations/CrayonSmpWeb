@@ -4,6 +4,7 @@ import { NavBar } from './components/NavBar/NavBar';
 import { MainPage } from './pages/main/MainPage';
 import { ChangelogsPage } from './pages/changelogs/ChangelogsPage';
 import { RulesPage } from './pages/rules/RulesPage';
+import { FaqPage } from './pages/faq/FaqPage';
 import { TechPage } from './pages/tech/TechPage';
 import { WikiPage } from './pages/wiki/WikiPage';
 import { ImprintPage } from './pages/imprint/ImprintPage';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/changelogs" element={categoryBlacklist.includes('changelogs') ? <Navigate to="/" replace /> : <ChangelogsPage />} />
           <Route path="/rules" element={categoryBlacklist.includes('rules') ? <Navigate to="/" replace /> : <RulesPage />} />
+          <Route path="/faq" element={categoryBlacklist.includes('faq') ? <Navigate to="/" replace /> : <FaqPage />} />
           <Route path="/tech" element={categoryBlacklist.includes('tech') ? <Navigate to="/" replace /> : <TechPage />} />
           <Route path="/wiki" element={categoryBlacklist.includes('wiki') ? <Navigate to="/" replace /> : <WikiPage />} />
           <Route path="/imprint" element={<ImprintPage />} />
