@@ -1,10 +1,11 @@
-import { Home, ScrollText, Scale, Wrench, BookOpen } from 'lucide-react';
+import { Home, ScrollText, Scale, Wrench, BookOpen, CircleHelp } from 'lucide-react';
 
 export const navConfig = {
   items: [
     { id: 'main', label: 'Main', path: '/', icon: Home },
     { id: 'changelogs', label: 'Changelogs', path: '/changelogs', icon: ScrollText },
     { id: 'rules', label: 'Rules', path: '/rules', icon: Scale },
+    { id: 'faq', label: 'FAQ', path: '/faq', icon: CircleHelp },
     { id: 'tech', label: 'Tech', path: '/tech', icon: Wrench },
     { id: 'wiki', label: 'Wiki', path: '/wiki', icon: BookOpen },
   ],
