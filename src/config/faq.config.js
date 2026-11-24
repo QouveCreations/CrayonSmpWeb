@@ -22,7 +22,7 @@ export const faqConfig = {
           icon: "Building2",
           question: "Who is behind CrayonSMP?",
           answer:
-            "CrayonSMP is managed by the studio Qouve Creations. The founders of Qouve are also the staff of CrayonSMP: Qonix, TamashiiMon and Fotrapsy."
+            "CrayonSMP is managed by the studio Qouve Creations. The founders of Qouve are also the staff of CrayonSMP: Qeonix, TamashiiMon and Fotrapsy."
         }
       ]
     },
