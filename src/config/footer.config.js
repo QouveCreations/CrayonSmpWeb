@@ -17,6 +17,7 @@ export const footerConfig = {
       enabled: true,
       title: "Informations",
       items: [
+        { text: "Wiki", url: "https://wiki.crayonsmp.com/", externalIcon: true },
         { text: "Status", url: "https://status.qouve.space/", externalIcon: true },
         { text: "Web-map", url: "https://map.crayonsmp.com", externalIcon: true },
       ]
